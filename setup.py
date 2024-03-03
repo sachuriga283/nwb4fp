@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import setuptools
 import warnings
 def read_requirements():
@@ -11,12 +11,12 @@ def read_requirements():
 
 setup(
     name='nwb4fp',
-    version='0.0.1',
+    version='0.0.2',
     url='https://github.com/sachuriga283/nwb4fp',
     author='sachuriga283',
     author_email='sachuriga.sachuriga@ntnu.no',
     description='Description of my package',
-    packages=find_packages(),    
+    #packages=find_packages(./src/),    
     install_requires=read_requirements(),
 )
 
