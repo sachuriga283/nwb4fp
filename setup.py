@@ -12,7 +12,7 @@ def read_requirements():
 setup(
     name='nwb4fp',
     version='0.0.1',
-    url='https://github.com/sachuriga283/quality_metrix.git',
+    url='https://github.com/sachuriga283/nwb4fp',
     author='sachuriga283',
     author_email='sachuriga.sachuriga@ntnu.no',
     description='Description of my package',
