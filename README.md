@@ -1,4 +1,4 @@
 #Recalculating the quality matrix and downsampling the LFP signal
 
-##install dependencies
-pip install nwb4fprobe
+##install dependencies and main functions
+pip install nwb4fp
