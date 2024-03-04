@@ -60,7 +60,7 @@ def qualitymetrix(path):
     rec_save = common_reference(rec, reference='global', operator='median')
 
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
-
+    print(f"get times for raw sorts{sorting.get_times()}")
     wf = si.extract_waveforms(rec_save, sorting, folder='C:/temp_waveform/', overwrite=True, 
                               sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
     
@@ -68,6 +68,8 @@ def qualitymetrix(path):
     print("processing potential merge...\n")
     
     sort_merge = get_potential_merge(sorting, wf)
+
+    print(f"get times for merge sorts{sort_merge.get_times()}")
     wfm = si.extract_waveforms(rec_save, sort_merge, folder='C:/temp_waveform/', overwrite=True, 
                               sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
 

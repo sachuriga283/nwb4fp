@@ -61,6 +61,7 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
         print(folder_path)
         time_spk = timestemp[sample_num]
         np.save(fr"{folder1_path}/spike_times.npy",time_spk)
+        
     interface_phy = PhySortingInterface(folder_path=folder1_path, verbose=False)
     # For data provenance we add the time zone information to the conversionSS
 
