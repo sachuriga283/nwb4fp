@@ -55,7 +55,9 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
 
     # Extract what metadata we can from the source files
     folder1_path = f"{path}"  # Change the folder_path to the location of the data in your system
+    print(fr"Animal number is {UD[0]}")
     if UD[0] == "65410":
+        print(fr"Animal number is {UD[0]} replacing the spike times")
         sample_num = np.load(fr"{folder1_path}/spike_times.npy")
         timestemp = np.load(fr'{folder_path}\experiment1\recording1\continuous\OE_FPGA_Acquisition_Board-101.Rhythm Data/sample_numbers.npy')
         print(folder_path)
