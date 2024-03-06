@@ -32,9 +32,9 @@ def main():
         sorted_files = load_data(folder_path, file_suffix='_phy_k')
 
         for file in sorted_files:
-            print(file)
-            qualitymetrix(file)
-            add_wf_cor(fr"{file}_manual")
+            # print(file)
+            # qualitymetrix(file)
+            # add_wf_cor(fr"{file}_manual")
             nwbPHYnOPHYS(fr"{file}_manual",
                         sex,
                         age,
