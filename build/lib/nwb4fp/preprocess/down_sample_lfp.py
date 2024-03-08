@@ -110,7 +110,7 @@ def add_lfp2nwb(filename,channel2selec,folder1_path):
             name="lfp_raw",
             data=lfp_raw,
             electrodes=regions,
-            starting_time=np.float64(lfp_times[0]),
+            # starting_time=np.float64(lfp_times[0]),
             rate=1000.0)
         lfp = LFP(electrical_series=lfp_electrical_series)
         ecephys_module = read_nwbfile.create_processing_module(name="lfp_raw", 
@@ -128,7 +128,7 @@ def add_lfp2nwb(filename,channel2selec,folder1_path):
             name="lfp_car",
             data=lfp_car,
             electrodes=regions,
-            starting_time=np.float64(lfp_times[0]),
+            # starting_time=np.float64(lfp_times[0]),
             rate=1000.0)
         lfp_car = LFP(electrical_series=lfp_car_electrical_series)
         ecephys_car_module.add(lfp_car)

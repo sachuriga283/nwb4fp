@@ -6,7 +6,7 @@ src/nwb4fp.egg-info/PKG-INFO
 src/nwb4fp.egg-info/SOURCES.txt
 src/nwb4fp.egg-info/dependency_links.txt
 src/nwb4fp.egg-info/top_level.txt
-src/nwb4fp/examples/main_create_nwb.py
+src/nwb4fp/main/main_create_nwb.py
 src/nwb4fp/postprocess/Get_positions.py
 src/nwb4fp/postprocess/__init__.py
 src/nwb4fp/postprocess/add_wfcor.py
