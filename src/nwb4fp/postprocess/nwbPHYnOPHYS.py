@@ -7,11 +7,11 @@ from pathlib import Path
 from neuroconv.datainterfaces import PhySortingInterface
 from neuroconv.datainterfaces import OpenEphysRecordingInterface
 from neuroconv import ConverterPipe
-from postprocess.Get_positions import load_positions,calc_head_direction,moving_direction
+from nwb4fp.postprocess.Get_positions import load_positions,calc_head_direction,moving_direction
 from pynwb import NWBHDF5IO, NWBFile
 from pynwb import NWBHDF5IO, NWBFile
 from dateutil.tz import tzlocal
-from preprocess.down_sample_lfp import down_sample_lfp,add_lfp2nwb
+from nwb4fp.preprocess.down_sample_lfp import down_sample_lfp,add_lfp2nwb
 
 from pynwb.behavior import (
     Position,
