@@ -34,7 +34,7 @@ def main():
     species = "Mus musculus"
     vedio_search_directory = base_data_folder/fr"Ephys_Vedio/CR_CA1/"
     path_save = base_data_folder/fr"nwb"
-    temp_folder = r'C:/temp_waveform/'
+    temp_folder = Path(r'C:/temp_waveform/')
     run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder)
 
 def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder):
