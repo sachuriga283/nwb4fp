@@ -13,7 +13,7 @@ def main() -> object:
     :rtype: object
     """
     print("main")
-def qualitymetrix(path):
+def qualitymetrix(path, temp_folder):
 
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])
     global_job_kwargs = dict(n_jobs=24, chunk_size=10000, chunk_duration="1s", total_memory="32G")
@@ -61,7 +61,7 @@ def qualitymetrix(path):
 
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
     print(f"get times for raw sorts{sorting.get_times()}")
-    wf = si.extract_waveforms(rec_save, sorting, folder='C:/temp_waveform/', overwrite=True, 
+    wf = si.extract_waveforms(rec_save, sorting, folder=temp_folder, overwrite=True, 
                               sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
     
     #get potential merging sorting objects
@@ -70,7 +70,7 @@ def qualitymetrix(path):
     sort_merge = get_potential_merge(sorting, wf)
 
     print(f"get times for merge sorts{sort_merge.get_times()}")
-    wfm = si.extract_waveforms(rec_save, sort_merge, folder='C:/temp_waveform/', overwrite=True, 
+    wfm = si.extract_waveforms(rec_save, sort_merge, folder=temp_folder, overwrite=True, 
                               sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
 
 

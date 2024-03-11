@@ -34,9 +34,10 @@ def main():
     species = "Mus musculus"
     vedio_search_directory = base_data_folder/fr"Ephys_Vedio/CR_CA1/"
     path_save = base_data_folder/fr"nwb"
-    run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save)
+    temp_folder = r'C:/temp_waveform/'
+    run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder)
 
-def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save):
+def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder):
     for indvi in animals:
         ID = indvi
         counter = 0
@@ -47,7 +48,7 @@ def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,pa
 
         for file in sorted_files[-1:]:
             print(file)
-            qualitymetrix(file)
+            qualitymetrix(file,temp_folder)
             add_wf_cor(fr"{file}_manual")
             nwbPHYnOPHYS(fr"{file}_manual",
                         sex,

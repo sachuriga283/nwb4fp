@@ -29,12 +29,12 @@ def main():
     from nwb4fp.postprocess.add_wfcor import add_wf_cor
     # set params for nwb
     sex = "F"
-    animals = ["65409", "65410"] 
+    animals = ["65588"] 
     age = "P45+"
     species = "Mus musculus"
     vedio_search_directory = base_data_folder/fr"Ephys_Vedio/CR_CA1/"
     path_save = base_data_folder/fr"nwb"
-    run_qmnwb(animals,base_data_folder)
+    run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save)
 
 def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save):
     for indvi in animals:
