@@ -1,7 +1,7 @@
 import spikeinterface as si
 import spikeinterface.extractors as se
 import spikeinterface.postprocessing as post
-from postprocess.get_potential_merge import get_potential_merge
+from nwb4fp.postprocess.get_potential_merge import get_potential_merge
 from spikeinterface.preprocessing import (bandpass_filter,
                                            common_reference)
 import spikeinterface.exporters as sex

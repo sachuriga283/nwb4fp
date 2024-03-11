@@ -159,8 +159,7 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
     converter.run_conversion(nwbfile_path=nwbfile_path, metadata=metadata)
     print("completet!!!!adding conversion to nwb file")
     channel2selec = [3, 8, 24, 16, 10, 1, 31, 15, 31, 58, 53, 50, 52, 4, 63, 48, 45, 55]
-    print（）
-    # add_lfp2nwb(nwbfile_path,channel2selec,folder1_path)
+    add_lfp2nwb(nwbfile_path,channel2selec,folder1_path)
     print("completet!!!!adding lfp to nwb file")
 if __name__== "__main__":
     main()

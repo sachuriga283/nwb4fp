@@ -1,12 +1,20 @@
 from pathlib import Path
 import string
 import sys
-from preprocess.load_data import load_data
-from postprocess.quality_metrix import qualitymetrix
-from postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
-from postprocess.add_wfcor import add_wf_cor
+from nwb4fp.preprocess.load_data import load_data
+from nwb4fp.postprocess.quality_metrix import qualitymetrix
+from nwb4fp.postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
+from nwb4fp.postprocess.add_wfcor import add_wf_cor
 
 def main():
+    from pathlib import Path
+    import string
+    import sys
+    from nwb4fp.preprocess.load_data import load_data
+    from nwb4fp.postprocess.quality_metrix import qualitymetrix
+    from nwb4fp.postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
+    from nwb4fp.postprocess.add_wfcor import add_wf_cor
+
     base_path = Path("Q:/Sachuriga/Sachuriga_Python")
     base_data_folder = Path("S:/Sachuriga/")
     project_path = fr"{base_path}/quality_metrix/"
@@ -15,10 +23,10 @@ def main():
     # change to project root
     sys.path.append(project_path)
 
-    from preprocess.load_data import load_data
-    from postprocess.quality_metrix import qualitymetrix
-    from postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
-    from postprocess.add_wfcor import add_wf_cor
+    from nwb4fp.preprocess.load_data import load_data
+    from nwb4fp.postprocess.quality_metrix import qualitymetrix
+    from nwb4fp.postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
+    from nwb4fp.postprocess.add_wfcor import add_wf_cor
     # set params for nwb
     sex = "F"
     animals = ["65409", "65410"] 
