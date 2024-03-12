@@ -46,7 +46,7 @@ def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,pa
         ##for quality metrix
         sorted_files = load_data(folder_path, file_suffix='_phy_k')
 
-        for file in sorted_files[-1:]:
+        for file in sorted_files:
             print(file)
             qualitymetrix(file,temp_folder)
             add_wf_cor(fr"{file}_manual")
