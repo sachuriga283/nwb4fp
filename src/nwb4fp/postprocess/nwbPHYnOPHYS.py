@@ -64,14 +64,26 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
     # Extract what metadata we can from the source files
     folder1_path = f"{path}"  # Change the folder_path to the location of the data in your system
     print(fr"Animal number is {UD[0]}")
-    if UD[0] == "65410":
-        print(fr"Animal number is {UD[0]} replacing the spike times")
-        sample_num = np.load(fr"{folder1_path}/spike_times.npy")
-        timestemp = np.load(fr'{folder_path}\experiment1\recording1\continuous\OE_FPGA_Acquisition_Board-101.Rhythm Data/sample_numbers.npy')
-        print(folder_path)
-        time_spk = timestemp[sample_num]
-        np.save(fr"{folder1_path}/spike_times.npy",time_spk)
+    # if UD[0] == "65410":
+    print(fr"Animal number is {UD[0]} replacing the spike times")
+    #     sample_num = np.load(fr"{folder1_path}/spike_times.npy")
+    #     timestemp = np.load(fr'{folder_path}\experiment1\recording1\continuous\OE_FPGA_Acquisition_Board-101.Rhythm Data/sample_numbers.npy')
+    #     print(folder_path)
+    #     time_spk = timestemp[sample_num]
+    #     np.save(fr"{folder1_path}/spike_times.npy",time_spk)
         
+    sample_num = np.load(fr"{folder1_path}/spike_times.npy")
+    try:
+        timestemp = np.load(fr'{folder_path}/continuous/OE_FPGA_Acquisition_Board-101.Rhythm Data/sample_numbers.npy')
+    except FileNotFoundError:
+        folder_path = fr"{ECEPHY_DATA_PATH}/Record Node 101"
+        # S:\Sachuriga\Ephys_Recording\CR_CA1\65588\65588_2024-03-06_15-45-53_A\Record Node 101\experiment1\recording1\continuous\Acquisition_Board-100.Rhythm Data
+        timestemp = np.load(fr'{folder_path}/experiment1/recording1/continuous/Acquisition_Board-100.Rhythm Data/sample_numbers.npy')
+    print(folder_path)
+    time_spk = timestemp[sample_num]
+
+    np.save(fr"{folder1_path}/spike_times.npy",time_spk)
+    
     interface_phy = PhySortingInterface(folder_path=folder1_path, verbose=False)
     # For data provenance we add the time zone information to the conversionSS
 

@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+nwb4fp.egg-info/PKG-INFO
+nwb4fp.egg-info/SOURCES.txt
+nwb4fp.egg-info/dependency_links.txt
+nwb4fp.egg-info/requires.txt
+nwb4fp.egg-info/top_level.txt
