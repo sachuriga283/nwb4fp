@@ -50,8 +50,16 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
     down_sample_lfp(fr"{path}",fr"{ECEPHY_DATA_PATH}")
     folder_path = Path(folder_path)
 
-    # Change the folder_path to the appropriate location in your system
-    interface_ophys = OpenEphysRecordingInterface(folder_path=folder_path,stream_name=stream_name,es_key="lfp_raw")
+    try:
+        interface_ophys = OpenEphysRecordingInterface(folder_path=folder_path,stream_name=stream_name)
+    except AssertionError:
+        try:
+            stream_name = 'Record Node 102#OE_FPGA_Acquisition_Board-101.Rhythm Data'
+            interface_ophys = OpenEphysRecordingInterface(folder_path=folder_path,stream_name=stream_name)
+        except AssertionError:
+            folder_path = fr"{ECEPHY_DATA_PATH}/Record Node 101"
+            stream_name = 'Record Node 101#Acquisition_Board-100.Rhythm Data'
+            interface_ophys = OpenEphysRecordingInterface(folder_path=folder_path,stream_name=stream_name)
 
     # Extract what metadata we can from the source files
     folder1_path = f"{path}"  # Change the folder_path to the location of the data in your system

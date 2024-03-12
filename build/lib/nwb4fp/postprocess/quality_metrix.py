@@ -16,7 +16,7 @@ def main() -> object:
 def qualitymetrix(path, temp_folder):
 
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])
-    global_job_kwargs = dict(n_jobs=24, chunk_size=10000, chunk_duration="1s", total_memory="32G")
+    global_job_kwargs = dict(n_jobs=12, chunk_size=10000, chunk_duration="1s", total_memory="32G")
     si.set_global_job_kwargs(**global_job_kwargs)
     temp_path = path.split("_phy")
     raw_path = temp_path[0]
