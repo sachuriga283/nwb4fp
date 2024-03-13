@@ -63,6 +63,10 @@ def load_positions(path,vedio_search_directory,folder_path,UD):
     matching_files = np.unique(matching_files)
     v_state = np.load(matching_files[0])
     f_time = v_time[np.where(v_state==3)[0]]
+    if f_time.shape[0] == 0:
+        f_time = v_time[np.where(v_state==6)[0]]
+        print('No timestamps found in the states file.')
+
     arr_with_new_col =  np.insert(positions , 0, f_time[:len(positions)], axis=1) # type: ignore
     return arr_with_new_col
 
