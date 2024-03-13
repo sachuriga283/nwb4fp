@@ -17,8 +17,8 @@ def main():
 
     base_path = Path("Q:/Sachuriga/Sachuriga_Python")
     base_data_folder = Path("S:/Sachuriga/")
-    project_path = fr"{base_path}/quality_metrix/"
-    sys.path.append(fr"{project_path}/quality_metrix")
+    project_path = fr"{base_path}/nwb4fprobe/src/nwb4fp/"
+    sys.path.append(fr"{project_path}")
 
     # change to project root
     sys.path.append(project_path)
