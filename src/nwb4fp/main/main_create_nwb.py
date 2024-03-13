@@ -29,7 +29,7 @@ def main():
     from nwb4fp.postprocess.add_wfcor import add_wf_cor
     # set params for nwb
     sex = "F"
-    animals = ["65588"] 
+    animals = ["65165","65091","65283"] 
     age = "P45+"
     species = "Mus musculus"
     vedio_search_directory = base_data_folder/fr"Ephys_Vedio/CR_CA1/"
