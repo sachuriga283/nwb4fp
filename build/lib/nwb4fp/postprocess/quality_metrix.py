@@ -13,6 +13,68 @@ def main() -> object:
     :rtype: object
     """
     print("main")
+
+def test_clusterInfo(path, temp_folder):
+    sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])
+    global_job_kwargs = dict(n_jobs=12, chunk_size=10000, chunk_duration="1s", total_memory="32G")
+    si.set_global_job_kwargs(**global_job_kwargs)
+    temp_path = path.split("_phy")
+    raw_path = temp_path[0]
+    stream_name = 'Record Node 101#OE_FPGA_Acquisition_Board-100.Rhythm Data'
+    try:
+        recording = se.read_openephys(raw_path, stream_name=stream_name, load_sync_timestamps=True)
+    except AssertionError:
+        try:
+            stream_name = 'Record Node 102#OE_FPGA_Acquisition_Board-101.Rhythm Data'
+            recording = se.read_openephys(raw_path, stream_name=stream_name, load_sync_timestamps=True)
+        except AssertionError:
+            stream_name = 'Record Node 101#Acquisition_Board-100.Rhythm Data'
+            recording = se.read_openephys(raw_path, stream_name=stream_name, load_sync_timestamps=True)
+
+    import probeinterface as pi
+
+    # from probeinterface import plotting
+    manufacturer = 'cambridgeneurotech'
+    probe_name = 'ASSY-236-F'
+    probe = pi.get_probe(manufacturer, probe_name)
+    print(probe)
+    # probe.wiring_to_device('cambridgeneurotech_mini-amp-64')
+    # map channels to device indices
+    mapping_to_device = [
+        # connector J2 TOP
+        41, 39, 38, 37, 35, 34, 33, 32, 29, 30, 28, 26, 25, 24, 22, 20,
+        46, 45, 44, 43, 42, 40, 36, 31, 27, 23, 21, 18, 19, 17, 16, 14,
+        # connector J1 BOTTOM
+        55, 53, 54, 52, 51, 50, 49, 48, 47, 15, 13, 12, 11, 9, 10, 8,
+        63, 62, 61, 60, 59, 58, 57, 56, 7, 6, 5, 4, 3, 2, 1, 0
+    ]
+
+    probe.set_device_channel_indices(mapping_to_device)
+    probe.to_dataframe(complete=True).loc[:, ["contact_ids", "shank_ids", "device_channel_indices"]]
+    probegroup = pi.ProbeGroup()
+    probegroup.add_probe(probe)
+
+    pi.write_prb(f"{probe_name}.prb", probegroup, group_mode="by_shank")
+    recording_prb = recording.set_probe(probe, group_mode="by_shank")
+    rec = bandpass_filter(recording_prb, freq_min=300, freq_max=6000)
+    rec_save = common_reference(rec, reference='global', operator='median')
+
+    sorting.set_property(key='group', values = sorting.get_property("channel_group"))
+    print(f"get times for raw sorts{sorting.get_times()}")
+    wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
+                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+    
+    #get potential merging sorting objects
+    print("processing potential merge...\n")
+    
+    sort_merge = get_potential_merge(sorting, wf)
+    try:
+        print(f"get times for merge sorts{sort_merge.get_times()}")
+        wfm = si.extract_waveforms(rec_save, sort_merge, folder=fr"{temp_folder}", overwrite=True, 
+                                sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+    except:
+        print(f"{raw_path} no merge")
+        
 def qualitymetrix(path, temp_folder):
 
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])

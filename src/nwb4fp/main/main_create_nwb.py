@@ -2,7 +2,7 @@ from pathlib import Path
 import string
 import sys
 from nwb4fp.preprocess.load_data import load_data
-from nwb4fp.postprocess.quality_metrix import qualitymetrix
+from nwb4fp.postprocess.quality_metrix import (qualitymetrix, test_clusterInfo)
 from nwb4fp.postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
 from nwb4fp.postprocess.add_wfcor import add_wf_cor
 
@@ -11,7 +11,7 @@ def main():
     import string
     import sys
     from nwb4fp.preprocess.load_data import load_data
-    from nwb4fp.postprocess.quality_metrix import qualitymetrix
+    from nwb4fp.postprocess.quality_metrix import qualitymetrix,test_clusterInfo
     from nwb4fp.postprocess.nwbPHYnOPHYS import nwbPHYnOPHYS
     from nwb4fp.postprocess.add_wfcor import add_wf_cor
 
@@ -45,6 +45,8 @@ def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,pa
         folder_path = fr"{str(base_data_folder)}/Ephys_Recording/CR_CA1/{ID}/"
         ##for quality metrix
         sorted_files = load_data(folder_path, file_suffix='_phy_k')
+        for file in sorted_files:
+            test_clusterInfo(file,temp_folder)
 
         for file in sorted_files:
             print(file)
