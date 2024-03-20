@@ -82,9 +82,13 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
             # S:\Sachuriga\Ephys_Recording\CR_CA1\65588\65588_2024-03-06_15-45-53_A\Record Node 101\experiment1\recording1\continuous\Acquisition_Board-100.Rhythm Data
             timestemp = np.load(fr'{folder_path}/experiment1/recording1/continuous/Acquisition_Board-100.Rhythm Data/sample_numbers.npy')
         except FileNotFoundError:
-            folder_path = fr"{ECEPHY_DATA_PATH}/Record Node 102"
-            timestemp = np.load(fr'{folder_path}/experiment1/recording1/continuous/OE_FPGA_Acquisition_Board-100.Rhythm Data/sample_numbers.npy')
-        
+            try:
+                folder_path = fr"{ECEPHY_DATA_PATH}/Record Node 102"
+                timestemp = np.load(fr'{folder_path}/experiment1/recording1/continuous/OE_FPGA_Acquisition_Board-100.Rhythm Data/sample_numbers.npy')
+            except FileNotFoundError:
+                folder_path = fr"{ECEPHY_DATA_PATH}/Record Node 102"
+                timestemp = np.load(fr'{folder_path}/experiment1/recording1/continuous/OE_FPGA_Acquisition_Board-101.Rhythm Data/sample_numbers.npy')
+            
     print(folder_path)
     time_spk = timestemp[sample_num]
 
