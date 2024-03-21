@@ -69,10 +69,10 @@ def test_clusterInfo(path, temp_folder):
     
     sort_merge = get_potential_merge(sorting, wf)
     try:
-        print(f"get times for merge sorts{sort_merge.get_times()}")
         wfm = si.extract_waveforms(rec_save, sort_merge, folder=fr"{temp_folder}", overwrite=True, 
                                 sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
-    except:
+        print(f"{raw_path} merge complete")
+    except AssertionError:
         print(f"{raw_path} no merge")
         
 def qualitymetrix(path, temp_folder):
