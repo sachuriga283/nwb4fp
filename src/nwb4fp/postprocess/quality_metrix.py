@@ -61,20 +61,21 @@ def test_clusterInfo(path, temp_folder,save_path_test):
 
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
     print(f"Checking the sorting properties")
+    new_data = pd.DataFrame(columns=['File', 'competability'])
 
     try:
         wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
                                 sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
-        new_data = new_data.append({'File': f"{raw_path}", 'competability': "can be merged"}, ignore_index=True)
+        new_row = pd.DataFrame({'File': f"{raw_path}", 'competability': "can be merged"})
         print(f"{raw_path} merge complete")
     except AssertionError:
-        new_data = new_data.append({'File': f"{raw_path}", 'competability': "can not be merged"}, ignore_index=True)
+        new_row = pd.DataFrame({'File': f"{raw_path}", 'competability': "can not be merged"})
         print(f"{raw_path} no merge")
     
     existing_data = pd.read_csv(save_path_test)
 
     # Append the new data to the existing DataFrame
-    updated_data = existing_data.append(new_data, ignore_index=True)
+    updated_data = pd.concat([existing_data,new_row], ignore_index=True)
 
     # Save the updated DataFrame back to a CSV file
     updated_data.to_csv(save_path_test, index=False)
