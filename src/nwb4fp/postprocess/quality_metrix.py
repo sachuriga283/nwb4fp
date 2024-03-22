@@ -7,14 +7,14 @@ from spikeinterface.preprocessing import (bandpass_filter,
 import spikeinterface.exporters as sex
 import spikeinterface.qualitymetrics as sqm
 from pathlib import Path
-
+import pandas as pd
 def main() -> object:
     """
     :rtype: object
     """
     print("main")
 
-def test_clusterInfo(path, temp_folder):
+def test_clusterInfo(path, temp_folder,save_path_test):
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])
     global_job_kwargs = dict(n_jobs=12, chunk_size=10000, chunk_duration="1s", total_memory="32G")
     si.set_global_job_kwargs(**global_job_kwargs)
@@ -60,21 +60,26 @@ def test_clusterInfo(path, temp_folder):
     rec_save = common_reference(rec, reference='global', operator='median')
 
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
-    print(f"get times for raw sorts{sorting.get_times()}")
-    wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
-                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
-    
-    #get potential merging sorting objects
-    print("processing potential merge...\n")
-    
-    sort_merge = get_potential_merge(sorting, wf)
+    print(f"Checking the sorting properties")
+
     try:
-        wfm = si.extract_waveforms(rec_save, sort_merge, folder=fr"{temp_folder}", overwrite=True, 
+        wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
                                 sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+        new_data = new_data.append({'File': f"{raw_path}", 'competability': "can be merged"}, ignore_index=True)
         print(f"{raw_path} merge complete")
     except AssertionError:
+        new_data = new_data.append({'File': f"{raw_path}", 'competability': "can not be merged"}, ignore_index=True)
         print(f"{raw_path} no merge")
-        
+    
+    existing_data = pd.read_csv(save_path_test)
+
+    # Append the new data to the existing DataFrame
+    updated_data = existing_data.append(new_data, ignore_index=True)
+
+    # Save the updated DataFrame back to a CSV file
+    updated_data.to_csv(save_path_test, index=False)
+
+
 def qualitymetrix(path, temp_folder):
 
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])

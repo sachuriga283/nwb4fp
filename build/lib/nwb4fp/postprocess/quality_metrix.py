@@ -60,20 +60,15 @@ def test_clusterInfo(path, temp_folder):
     rec_save = common_reference(rec, reference='global', operator='median')
 
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
-    print(f"get times for raw sorts{sorting.get_times()}")
-    wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
-                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+    print(f"Checking the sorting properties")
     
-    #get potential merging sorting objects
-    print("processing potential merge...\n")
-    
-    sort_merge = get_potential_merge(sorting, wf)
     try:
-        wfm = si.extract_waveforms(rec_save, sort_merge, folder=fr"{temp_folder}", overwrite=True, 
+        wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
                                 sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
         print(f"{raw_path} merge complete")
     except AssertionError:
         print(f"{raw_path} no merge")
+        
         
 def qualitymetrix(path, temp_folder):
 
