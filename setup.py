@@ -11,7 +11,7 @@ def read_requirements():
 
 setup(
     name='nwb4fp',
-    version='0.3.7',
+    version='0.4.9',
     url='https://github.com/sachuriga283/nwb4fp',
     author='sachuriga283',
     author_email='sachuriga.sachuriga@ntnu.no',
@@ -21,4 +21,5 @@ setup(
 )
 
 if __name__ == "__main__":
+    ## pip list --format=freeze > requirements.txt
     setuptools.setup()

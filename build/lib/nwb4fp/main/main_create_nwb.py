@@ -37,7 +37,7 @@ def main():
     temp_folder = Path(r'C:/temp_waveform/')
     run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder)
 
-def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test):
+def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test,vedio_search_directory):
     for indvi in animals:
         ID = indvi
         counter = 0
@@ -46,7 +46,7 @@ def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test):
         ##for quality metrix
         sorted_files = load_data(folder_path, file_suffix='_phy_k')
         for file in sorted_files:
-            test_clusterInfo(file,temp_folder,save_path_test)
+            test_clusterInfo(file,temp_folder,save_path_test,vedio_search_directory)
 
 
 def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder):
@@ -57,8 +57,6 @@ def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,pa
         folder_path = fr"{str(base_data_folder)}/Ephys_Recording/CR_CA1/{ID}/"
         ##for quality metrix
         sorted_files = load_data(folder_path, file_suffix='_phy_k')
-        for file in sorted_files:
-            test_clusterInfo(file,temp_folder)
 
         for file in sorted_files:
             print(file)

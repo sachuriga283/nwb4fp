@@ -1,6 +1,7 @@
 import spikeinterface as si
 import spikeinterface.extractors as se
 import spikeinterface.postprocessing as post
+from nwb4fp.postprocess.Get_positions import load_positions,load_positions_h5
 from nwb4fp.postprocess.get_potential_merge import get_potential_merge
 from spikeinterface.preprocessing import (bandpass_filter,
                                            common_reference)
@@ -14,7 +15,7 @@ def main() -> object:
     """
     print("main")
 
-def test_clusterInfo(path, temp_folder,save_path_test):
+def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory):
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])
     global_job_kwargs = dict(n_jobs=12, chunk_size=10000, chunk_duration="1s", total_memory="32G")
     si.set_global_job_kwargs(**global_job_kwargs)
@@ -61,25 +62,37 @@ def test_clusterInfo(path, temp_folder,save_path_test):
 
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
     print(f"Checking the sorting properties")
-    new_data = pd.DataFrame(columns=['File', 'competability'])
+    
+    new_data = pd.DataFrame(columns=['File', 'competability','dlc'])
+    temp = path[0 - int(35):]
+    path1 = temp.split("/")
+    file = path.split("_phy_")
+    UD = path1[1].split("_")
+    print(file[1])
 
     try:
         wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
-                                sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
-        new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged"})
+                                  sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+        try:
+            arr_with_new_col = load_positions_h5(path,vedio_search_directory,raw_path,UD)
+            new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file exits"})
+        except IndexError:
+            new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file not found"})
         print(f"{raw_path} merge complete")
     except AssertionError:
-        new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged"})
-        print(f"{raw_path} no merge")
-    
-    existing_data = pd.read_csv(save_path_test)
+            try:
+                arr_with_new_col = load_positions_h5(path,vedio_search_directory,raw_path,UD)
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file exits"})
+            except IndexError:
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file not found"})
+            print(f"{raw_path} no merge")
 
+
+    existing_data = pd.read_csv(save_path_test)
     # Append the new data to the existing DataFrame
     updated_data = pd.concat([existing_data,new_row], ignore_index=True)
-
     # Save the updated DataFrame back to a CSV file
     updated_data.to_csv(save_path_test, index=False)
-
 
 def qualitymetrix(path, temp_folder):
 

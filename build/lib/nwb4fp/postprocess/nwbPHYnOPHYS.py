@@ -7,7 +7,7 @@ from pathlib import Path
 from neuroconv.datainterfaces import PhySortingInterface
 from neuroconv.datainterfaces import OpenEphysRecordingInterface
 from neuroconv import ConverterPipe
-from nwb4fp.postprocess.Get_positions import load_positions,calc_head_direction,moving_direction
+from nwb4fp.postprocess.Get_positions import load_positions,calc_head_direction,moving_direction,load_positions_h5
 from pynwb import NWBHDF5IO, NWBFile
 from pynwb import NWBHDF5IO, NWBFile
 from dateutil.tz import tzlocal
@@ -27,7 +27,6 @@ def main():
     vedio_search_directory = "S:/Sachuriga/Ephys_Vedio/CR_CA1"
     path_to_save_nwbfile = "S:/Sachuriga/nwb"
     nwbPHYnOPHYS(path, sex, ages, species, vedio_search_directory, path_to_save_nwbfile)  # Added missing argument
-
 
 def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfile):
 
@@ -96,13 +95,11 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
     
     interface_phy = PhySortingInterface(folder_path=folder1_path, verbose=False)
     # For data provenance we add the time zone information to the conversionSS
-
     converter = ConverterPipe(data_interfaces=[interface_ophys, interface_phy], verbose=False)
     # Extract what metadata we can from the source files
     metadata = converter.get_metadata()
-    arr_with_new_col = load_positions(path,vedio_search_directory,folder_path,UD)
+    arr_with_new_col = load_positions_h5(path,vedio_search_directory,folder_path,UD)
     # print(f"{arr_with_new_col.shape[1]} output the shape of the array")
-
     snout2neck = arr_with_new_col[:,[0,1,2,3,4]]
     neck2back4 = arr_with_new_col[:,[0,3,4,5,6]]
 
@@ -120,7 +117,7 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
     position_spatial_series = SpatialSeries(
         name="SpatialSeries",
         description="Position (x, y) in an open field.",
-        data=arr_with_new_col[:,[1,2]],
+        data=arr_with_new_col[:,[3,4]],
         timestamps=arr_with_new_col[:,0],
         reference_frame="(0,0) is top left corner")
     
@@ -130,14 +127,12 @@ def nwbPHYnOPHYS(path,sex,ages,species,vedio_search_directory,path_to_save_nwbfi
                                              timestamps=snout2neck[:,0],
                                              reference_frame="straight ahead",
                                              unit="radians",)
-    
     bd_direction_spatial_series = SpatialSeries(name="SpatialSeries",
                                              description="View angle of the subject measured in radians.",
                                              data=bd,
                                              timestamps=neck2back4[:,0],
                                              reference_frame="straight back",
                                              unit="radians",)
-
     md_direction_spatial_series = SpatialSeries(name="SpatialSeries",
                                              description="moving angle of the subject measured in radians.",
                                              data=md,
