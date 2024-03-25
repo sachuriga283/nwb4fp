@@ -66,10 +66,10 @@ def test_clusterInfo(path, temp_folder,save_path_test):
     try:
         wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
                                 sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
-        new_row = pd.DataFrame({'File': f"{raw_path}", 'competability': "can be merged"})
+        new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged"})
         print(f"{raw_path} merge complete")
     except AssertionError:
-        new_row = pd.DataFrame({'File': f"{raw_path}", 'competability': "can not be merged"})
+        new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged"})
         print(f"{raw_path} no merge")
     
     existing_data = pd.read_csv(save_path_test)

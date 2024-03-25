@@ -11,7 +11,7 @@ def read_requirements():
 
 setup(
     name='nwb4fp',
-    version='0.3.1',
+    version='0.3.7',
     url='https://github.com/sachuriga283/nwb4fp',
     author='sachuriga283',
     author_email='sachuriga.sachuriga@ntnu.no',
