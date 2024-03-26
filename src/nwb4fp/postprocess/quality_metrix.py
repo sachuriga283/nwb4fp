@@ -1,7 +1,7 @@
 import spikeinterface as si
 import spikeinterface.extractors as se
 import spikeinterface.postprocessing as post
-from nwb4fp.postprocess.Get_positions import load_positions,load_positions_h5
+from nwb4fp.postprocess.Get_positions import load_positions,load_positions_h5,test_positions_h5
 from nwb4fp.postprocess.get_potential_merge import get_potential_merge
 from spikeinterface.preprocessing import (bandpass_filter,
                                            common_reference)
@@ -74,15 +74,22 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory):
         wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
                                   sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
         try:
-            arr_with_new_col = load_positions_h5(path,vedio_search_directory,raw_path,UD)
-            new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file exits"})
+            arr_with_new_col,model_num = test_positions_h5(path,vedio_search_directory,raw_path,UD)
+
+            if model_num == 80000:
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "80000_iteraion"})
+            else:  
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "60000_iteraion"})
         except IndexError:
             new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file not found"})
         print(f"{raw_path} merge complete")
     except AssertionError:
             try:
-                arr_with_new_col = load_positions_h5(path,vedio_search_directory,raw_path,UD)
-                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file exits"})
+                arr_with_new_col,model_num = test_positions_h5(path,vedio_search_directory,raw_path,UD)
+                if model_num == 80000:
+                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "80000_iteraion"})
+                else:  
+                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "60000_iteraion"})
             except IndexError:
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file not found"})
             print(f"{raw_path} no merge")
@@ -143,7 +150,7 @@ def qualitymetrix(path, temp_folder):
     sorting.set_property(key='group', values = sorting.get_property("channel_group"))
     print(f"get times for raw sorts{sorting.get_times()}")
     wf = si.extract_waveforms(rec_save, sorting, folder=fr"{temp_folder}", overwrite=True, 
-                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=500)
     
     #get potential merging sorting objects
     print("processing potential merge...\n")
@@ -152,7 +159,7 @@ def qualitymetrix(path, temp_folder):
 
     print(f"get times for merge sorts{sort_merge.get_times()}")
     wfm = si.extract_waveforms(rec_save, sort_merge, folder=fr"{temp_folder}", overwrite=True, 
-                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
+                              sparse=True, method="by_property",by_property="group",max_spikes_per_unit=None)
 
 
     spike_locations = post.compute_unit_locations(waveform_extractor=wfm,

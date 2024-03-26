@@ -18,6 +18,7 @@ from pynwb.behavior import (
     SpatialSeries,
     CompassDirection
 )
+
 import numpy as np
 def main():
     path = "S:\\Sachuriga/Ephys_Recording/CR_CA1/65409/65409_2023-12-08_16-39-36_A_phy_k_manual"
