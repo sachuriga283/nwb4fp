@@ -99,7 +99,7 @@ def test_positions_h5(path,vedio_search_directory,folder_path,UD):
         print('Vedio is 25Hz')
 
     arr_with_new_col =  np.insert(positions , 0, f_time[:len(positions)], axis=1) # type: ignore
-    return arr_with_new_col, model_num
+    return arr_with_new_col, model_num, dlc_path
 
 def load_positions_h5(path,vedio_search_directory,folder_path,UD):
     import glob
