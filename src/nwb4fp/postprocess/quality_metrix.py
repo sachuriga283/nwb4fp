@@ -81,11 +81,11 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "80000_iteraion"})
             else:  
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "60000_iteraion"})
-                temp_vname = dlc_path.split("DLC_dlcrnet")
-                vpath= temp_vname[0]
-                temp_vname=vpath.split("CR_CA1")
-                vname=temp_vname[1]
-                shutil.copy2(fr'{temp_vname}.avi', fr'{idun_vedio_path}/{vname}.avi')
+                temp_vname = dlc_path.name.split("DLC_dlcrnet")
+                vname=temp_vname[0]
+                path_ori = dlc_path.parent
+                idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
+                shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
         except IndexError:
             new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file not found"})
 
@@ -97,11 +97,11 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                     new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "80000_iteraion"})
                 else:  
                     new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "60000_iteraion"})
-                    temp_vname = dlc_path.split("DLC_dlcrnet")
-                    vpath= temp_vname[0]
-                    temp_vname=vpath.split("CR_CA1")
-                    vname=temp_vname[1]
-                    shutil.copy2(fr'{temp_vname}.avi', fr'{idun_vedio_path}/{vname}.avi')
+                    temp_vname = dlc_path.name.split("DLC_dlcrnet")
+                    vname=temp_vname[0]
+                    path_ori = dlc_path.parent
+                    idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
+                    shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
                     
             except IndexError:
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file not found"})
