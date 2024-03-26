@@ -15,7 +15,7 @@ def main() -> object:
     """
     print("main")
 
-def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory):
+def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idun_vedio_path):
     sorting = se.read_phy(folder_path=path, load_all_cluster_properties=True,exclude_cluster_groups = ["noise", "mua"])
     global_job_kwargs = dict(n_jobs=12, chunk_size=10000, chunk_duration="1s", total_memory="32G")
     si.set_global_job_kwargs(**global_job_kwargs)

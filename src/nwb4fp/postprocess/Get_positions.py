@@ -67,7 +67,7 @@ def test_positions_h5(path,vedio_search_directory,folder_path,UD):
             matching_files = glob.glob(search_pattern,recursive=True)
             matching_files = np.unique(matching_files)
             dlc_path=Path(matching_files[0])
-            print("Used a 600000 iteration files")
+            print(f"dlc path: {dlc_path}. Used a 600000 iteration files")
             model_num = 800000
         except IndexError:
             raise IndexError('No file found')
