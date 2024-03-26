@@ -5,6 +5,7 @@ src/nwb4fp/__init__.py
 src/nwb4fp.egg-info/PKG-INFO
 src/nwb4fp.egg-info/SOURCES.txt
 src/nwb4fp.egg-info/dependency_links.txt
+src/nwb4fp.egg-info/requires.txt
 src/nwb4fp.egg-info/top_level.txt
 src/nwb4fp/main/__init__.py
 src/nwb4fp/main/main_create_nwb.py
