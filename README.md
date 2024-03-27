@@ -73,7 +73,6 @@ def main():
                idun_vedio_path=idun_vedio_path)
 
     ## check the 4nwb_check.csv file whether all the files (phy output and dlc .h5 file) is there and whether the file is competble to process quality metrix or not
-
     while True:
     user_input = input("Press 'c' to continue or 'q' to quit: ").strip().lower()
     if user_input == 'c':
@@ -85,6 +84,7 @@ def main():
     else:
         print("Invalid input. Please press 'c' to continue or 'q' to quit.")
 
+    ## conversionning the data to nwb format
     run_qmnwb(animals,
               base_data_folder,
               sex,age,
