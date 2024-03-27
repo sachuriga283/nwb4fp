@@ -1,4 +1,4 @@
-This repository contains a script for processing neuroscience data into NWB (Neurodata Without Borders) format. The script is designed to handle data from Mus musculus species, specifically for age P45+ and sex F.
+This repository contains a script for processing neuroscience data into NWB (Neurodata Without Borders) format. The script is designed to handle data from electrophysiology data recorded with open ephys system and behavioral track analyzed with deeplabcut.
 
 ## Introduction
 
