@@ -23,6 +23,8 @@ Clone the repository to your local machine using the following command:
 
 ```bash
 git clone <https://github.com/sachuriga283/QuattrocoloLab2nwb-nwb4fp.git>
+cd ./QuattrocoloLab2nwb-nwb4fp
+pip install requirements.txt
 ```
 
 ### Install with pipy
