@@ -76,17 +76,16 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                                   sparse=True, method="by_property",by_property="group",max_spikes_per_unit=1000)
         try:
             arr_with_new_col,model_num, dlc_path = test_positions_h5(path,vedio_search_directory,raw_path,UD)
-
+            temp_vname = dlc_path.name.split("DLC_dlcrnet")
+            vname=temp_vname[0]
+            path_ori = dlc_path.parent
+            idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
             if model_num == 800000:
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "800000_iteraion"})
                 new_row['video_name']= [fr"{vname}.avi"]
                 new_row['video_file']= ['file should be there']
             else:  
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "600000_iteraion"})
-                temp_vname = dlc_path.name.split("DLC_dlcrnet")
-                vname=temp_vname[0]
-                path_ori = dlc_path.parent
-                idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
                 try:
                     shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
                     new_row['video_name']= [fr"{vname}.avi"]
@@ -96,18 +95,15 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                     new_row['video_file']= ['file not exist']
         except IndexError:
             new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file not found"})
-            try:
-                shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
-                new_row['video_name']= [fr"{vname}.avi"]
-                new_row['video_file']= ['file transefered']
-            except FileNotFoundError:
-                new_row['video_name']= [fr"{vname}.avi"]
-                new_row['video_file']= ['file not exist']
 
         print(f"{raw_path} merge complete")
     except AssertionError:
             try:
-                arr_with_new_col,model_num = test_positions_h5(path,vedio_search_directory,raw_path,UD)
+                arr_with_new_col,model_num, dlc_path = test_positions_h5(path,vedio_search_directory,raw_path,UD)
+                temp_vname = dlc_path.name.split("DLC_dlcrnet")
+                vname=temp_vname[0]
+                path_ori = dlc_path.parent
+                idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
                 if model_num == 800000:
                     new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "800000_iteraion"})
                     new_row['video_name']= [fr"{vname}.avi"]
@@ -128,13 +124,7 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                         
             except IndexError:
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file not found"})
-                try:
-                    shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
-                    new_row['video_name']= [fr"{vname}.avi"]
-                    new_row['video_file']= ['file transefered']
-                except FileNotFoundError:
-                    new_row['video_name']= [fr"{vname}.avi"]
-                    new_row['video_file']= ['file not exist']
+
             print(f"{raw_path} no merge")
 
 
