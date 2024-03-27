@@ -51,7 +51,7 @@ def main():
     base_path = Path("Q:/Sachuriga/Sachuriga_Python")
     base_data_folder = Path("S:/Sachuriga/")
     sex = "F" # or "M"
-    ## animals name for now only support 5 numbers str, for example here listed 4 animals
+    ## animals name for now only support 5 numbers str, for example here listed 6 animals
     animals = ["33331", "33332", "33333", "33334", "33335", "33336"]
     ## animals ages for first recording day
     age = "P45+"
