@@ -67,7 +67,7 @@ The `-base_data_folder` is organized into two main subdirectories, each containi
 Please replace `project_name`, `video_name`, `dlc_model_name`, etc., with your specific project's details.
 
 
-## usage (example custom python file for running the nwb4fp)
+## Usage (example custom python file for running the nwb4fp)
 ```bash
 
 from nwb4fp.main.main_create_nwb import run_qmnwb,test_qmnwb
