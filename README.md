@@ -45,24 +45,24 @@ The `-base_data_folder` is organized into two main subdirectories, each containi
 - `-base_data_folder`
   - `Ephys_Video`
     - `project_name`
-      - `fr"{video_name}{dlc_model_name}"_filtered.h5`: Description of this file.
-      - `fr"{video_name}".avi`: Description of this file.
+      - `fr"{video_name}{dlc_model_name}"_filtered.h5`: deeplabcut results for corresponding video file.
+      - `fr"{video_name}".avi`: Original video file.
   - `Ephys_recording`
     - `project_name`
       - `individuals`
         - `recording/recording nodes`
           - `.continues`
-            - `sample_index.npy`: Description of this file.
-            - `time_stemps.npy`: Description of this file.
+            - `sample_index.npy`: index of each ephys sampling point.
+            - `time_stemps.npy`: time stemps of each ephys sampling point (computer_based).
           - `.events`
             - `sample_index.npy`: index for each sampling point of TTL signal(which we used for aliging the time stemps).
             - `time_stemps.npy`: time stemps of each TTL sampling point (Is camera base).
             - `states.npy`: States signal of TTL signal, which is high low signal(-6 6 for 50Hz aquiring) refers to the start of the TTL and end of the TTL.
         - `phy_output`
-          - `spike_times.npy`: this is `int` number which refers to the sampling index to 
-          - `recording.dat`: Description of this file.
-          - `spike_clusters.npy`: Description of this file.
-          - `cluster_info.tsv`: Description of this file.
+          - `spike_times.npy`: this is `int` number which refers to the sampling index to - `.continues`  - `sample_index.npy`. it's contains all the spikes deteced by the sorting algorism.
+          - `recording.dat`: raw binary data of the recording.
+          - `spike_clusters.npy`: same length vector as - `spike_times.npy`, which labes the cluster name to each spikes.
+          - `cluster_info.tsv`: sunmmary info of the sorting.
 
 Please replace `project_name`, `video_name`, `dlc_model_name`, etc., with your specific project's details.
 
