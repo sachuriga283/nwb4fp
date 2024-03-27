@@ -21,7 +21,6 @@ def main():
 
     idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
     #run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder)
-    
     test_qmnwb(animals,
                base_data_folder,
                temp_folder,

@@ -95,6 +95,8 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                     new_row['video_file']= ['file not exist']
         except IndexError:
             new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc_model': "file not found"})
+            new_row['video_name']= ['please check manualy']
+            new_row['video_file']= ['please check manualy']
 
         print(f"{raw_path} merge complete")
     except AssertionError:
@@ -124,6 +126,8 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                         
             except IndexError:
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc_model': "file not found"})
+                new_row['video_name']= ['please check manualy']
+                new_row['video_file']= ['please check manualy']
 
             print(f"{raw_path} no merge")
 
