@@ -9,7 +9,7 @@ The `test_qmnwb` function facilitates the checking the manual curated sorting fi
 ## Features
 
 - **Data Conversion**: Efficiently converts electrophysiology and behavioral data into the NWB format.
-- **Species and Demographic Specificity**: Optimized for data from Mus musculus, particularly targeting individuals of age P45+ and sex F.
+- **Species and Demographic Specificity**: required by 'nwbpy'.
 - **Video File Handling**: Automatically searches and processes video files from specified directories, integrating them with the NWB dataset.
 - **Data Verification**: Generates a CSV file post-conversion, allowing users to verify the processed data's integrity and completeness.
 
