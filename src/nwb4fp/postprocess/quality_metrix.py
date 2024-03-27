@@ -81,11 +81,11 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
             path_ori = dlc_path.parent
             idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
             if model_num == 800000:
-                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "800000_iteraion"})
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc_model': "800000_iteraion"})
                 new_row['video_name']= [fr"{vname}.avi"]
                 new_row['video_file']= ['file should be there']
             else:  
-                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "600000_iteraion"})
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc_model': "600000_iteraion"})
                 try:
                     shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
                     new_row['video_name']= [fr"{vname}.avi"]
@@ -94,7 +94,7 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                     new_row['video_name']= [fr"{vname}.avi"]
                     new_row['video_file']= ['file not exist']
         except IndexError:
-            new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file not found"})
+            new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc_model': "file not found"})
 
         print(f"{raw_path} merge complete")
     except AssertionError:
@@ -105,11 +105,11 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                 path_ori = dlc_path.parent
                 idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
                 if model_num == 800000:
-                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "800000_iteraion"})
+                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc_model': "800000_iteraion"})
                     new_row['video_name']= [fr"{vname}.avi"]
                     new_row['video_file']= ['file should be there']
                 else:  
-                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "600000_iteraion"})
+                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc_model': "600000_iteraion"})
                     temp_vname = dlc_path.name.split("DLC_dlcrnet")
                     vname=temp_vname[0]
                     path_ori = dlc_path.parent
@@ -123,10 +123,9 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
                         new_row['video_file']= ['file not exist']
                         
             except IndexError:
-                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file not found"})
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc_model': "file not found"})
 
             print(f"{raw_path} no merge")
-
 
     existing_data = pd.read_csv(save_path_test)
     # Append the new data to the existing DataFrame
