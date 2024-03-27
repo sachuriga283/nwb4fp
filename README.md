@@ -50,23 +50,31 @@ def main():
     import sys
 
     base_data_folder = Path("base folder")
-    vedio_search_directory = base_data_folder/fr"Ephys_Vedio/project_name/"
+    project_name = "Your_project"
+    vedio_search_directory = base_data_folder/fr"Ephys_Vedio/{project_name}/"
     path_save = base_data_folder/fr"nwb"
+
     #temp folder to save temporally created waveform folder from spikeinterface
     temp_folder = Path(r'C:/temp_waveform/')
     save_path_test=(r"Your prefered saving path/4nwb_check.csv")
+
     ## The function will copy the videos to the deeplabcut video folder, which were analyzed by older Deeplabcut models
     idun_vedio_path=r"dlc_video_folder"
-
     sex = "F" # or "M"
+
     ## animals name for now only support 5 numbers str, for example here listed 6 animals
     animals = ["33331", "33332", "33333", "33334", "33335", "33336"]
+
     ## animals ages for first recording day
     age = "P45+"
     species = "Mus musculus"
+    ## file suffix for phy output folder for example "phy_k"
+    file_suffix = "phy_k"
 
     test_qmnwb(animals,
                base_data_folder,
+               project_name,
+               file_suffix,
                temp_folder,
                save_path_test,
                vedio_search_directory,
@@ -87,6 +95,8 @@ def main():
     ## conversionning the data to nwb format
     run_qmnwb(animals,
               base_data_folder,
+              project_name,
+              file_suffix,
               sex,age,
               species,
               vedio_search_directory,
