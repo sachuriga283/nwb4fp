@@ -1,3 +1,4 @@
+![Alt text]("https://pypi.org/project/nwb4fp/")
 # Neuroscience Data to NWB Conversion Script
 
 This repository contains a Python package `nwb4fp`, designed to convert neuroscience data into the Neurodata Without Borders (NWB) format. It is specifically tailored for processing electrophysiology data from the open ephys system and behavioral tracking data analyzed with DeepLabCut.
