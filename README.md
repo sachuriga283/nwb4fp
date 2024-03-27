@@ -50,7 +50,7 @@ def main():
     import sys
 
     base_data_folder = Path("base folder")
-    vedio_search_directory = base_data_folder/fr"Video_folder/project_name/"
+    vedio_search_directory = base_data_folder/fr"Ephys_Vedio/project_name/"
     path_save = base_data_folder/fr"nwb"
     #temp folder to save temporally created waveform folder from spikeinterface
     temp_folder = Path(r'C:/temp_waveform/')
