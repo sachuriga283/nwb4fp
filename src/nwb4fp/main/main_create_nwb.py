@@ -37,15 +37,15 @@ def main():
     temp_folder = Path(r'C:/temp_waveform/')
     run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder)
 
-def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test,vedio_search_directory,idun_vedio_path):
+def test_qmnwb(animals,base_data_folder,project_name, file_suffix, temp_folder,save_path_test,vedio_search_directory,idun_vedio_path):
     import pandas as pd
     for indvi in animals:
         ID = indvi
         counter = 0
         #getting sorted files02
-        folder_path = fr"{str(base_data_folder)}/Ephys_Recording/CR_CA1/{ID}/"
+        folder_path = fr"{str(base_data_folder)}/Ephys_Recording/{project_name}/{ID}/"
         ##for quality metrix
-        sorted_files = load_data(folder_path, file_suffix='_phy_k')
+        sorted_files = load_data(folder_path, file_suffix=fr"{file_suffix}")
         df = pd.DataFrame(columns=['File', 'competability','dlc_model', 'video_name','video_file'])
         df.to_csv(save_path_test, index=False)
 
@@ -57,14 +57,14 @@ def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test,vedio_search_
                              idun_vedio_path)
 
 
-def run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder):
+def run_qmnwb(animals,base_data_folder,project_name,file_suffix, sex,age,species,vedio_search_directory,path_save,temp_folder):
     for indvi in animals:
         ID = indvi
         counter = 0
         #getting sorted files02
-        folder_path = fr"{str(base_data_folder)}/Ephys_Recording/CR_CA1/{ID}/"
+        folder_path = fr"{str(base_data_folder)}/Ephys_Recording/{project_name}/{ID}/"
         ##for quality metrix
-        sorted_files = load_data(folder_path, file_suffix='_phy_k')
+        sorted_files = load_data(folder_path, file_suffix=fr"{file_suffix}")
 
         for file in sorted_files:
             print(file)
