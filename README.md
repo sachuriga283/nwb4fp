@@ -17,3 +17,7 @@ Clone this repository to your local machine using:
 
 ```bash
 git clone <repository-url>
+
+```bash
+pip install nwb4fp
+
