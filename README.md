@@ -56,7 +56,7 @@ def main():
     temp_folder = Path(r'C:/temp_waveform/')
     save_path_test=(r"Your prefered saving path/4nwb_check.csv")
     ## The function will copy the videos to the deeplabcut video folder, which were analyzed by older Deeplabcut models
-    idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
+    idun_vedio_path=r"dlc_video_folder"
 
     sex = "F" # or "M"
     ## animals name for now only support 5 numbers str, for example here listed 6 animals
