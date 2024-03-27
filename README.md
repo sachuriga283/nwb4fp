@@ -38,7 +38,7 @@ conda activate nwb4fp
 pip install nwb4fp
 ```
 
-### usage (custom python file for running the nwb4fp)
+### usage (example custom python file for running the nwb4fp)
 ```bash
 
 from nwb4fp.main.main_create_nwb import run_qmnwb,test_qmnwb
