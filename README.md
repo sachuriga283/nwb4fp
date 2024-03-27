@@ -1,17 +1,17 @@
 # Neuroscience Data to NWB Conversion Script
 
-This repository houses a Python script, `main_create_nwb.py`, designed to convert neuroscience data into the Neurodata Without Borders (NWB) format. It is specifically tailored for processing electrophysiology data obtained from the open ephys system and behavioral tracking data analyzed with DeepLabCut.
+This repository contains a Python package `nwb4fp`, designed to convert neuroscience data into the Neurodata Without Borders (NWB) format. It is specifically tailored for processing electrophysiology data from the open ephys system and behavioral tracking data analyzed with DeepLabCut.
 
 ## Introduction
 
-The `test_qmnwb` function facilitates the checking the manual curated sorting files and DLC file is fullfilled the next step or not. The `test_qmnwb` function will create a `4nwb_check.csv` to let you check whether or not the files are meeting the requirement. The `run_qmnwb`  function facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.  The `run_qmnwb` will read all the phy output ended with `phy_k` folder under each individual animals, and select the curated `good` units to calculate the qualyty metrix using python package `spikeinterface` built-in function and create a new phy output folder ended with `phy_k_manual` to preparing for the conversion to `.nwb` file.
+The `test_qmnwb` function checks whether the manually curated sorting files and the DLC file meet the requirements for the next step. This function creates a `4nwb_check.csv` file, allowing you to verify if the files meet the necessary criteria. The `run_qmnwb` function facilitates the conversion of neuroscience data into the NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with Mus musculus, focusing on electrophysiology and behavioral data. The `run_qmnwb` reads all phy outputs ending with the `{phy suffix}` folder under each individual animal and selects the curated `good` units to calculate the quality metrics using the `spikeinterface` package's built-in function. It then creates a new phy output folder ending with `{phy suffix}_manual` to prepare for conversion to the `.nwb` file.
 
 ## Features
 
 - **Data Conversion**: Efficiently converts electrophysiology and behavioral data into the NWB format.
-- **Species and Demographic Specificity**: required by 'nwbpy'.
-- **Video File Handling**: Automatically searches and processes video files from specified directories, integrating them with the NWB dataset.
-- **Data Verification**: Generates a CSV file post-conversion, allowing users to verify the processed data's integrity and completeness.
+- **Species and Demographic Specificity**: Required by 'nwbpy'.
+- **Video File Handling**: Automatically searches for and processes video files from specified directories, integrating them with the NWB dataset.
+- **Data Verification**: Generates a CSV file post-conversion to allow users to verify the integrity and completeness of the processed data.
 
 ## Installation
 
