@@ -38,8 +38,8 @@ conda activate nwb4fp
 pip install nwb4fp
 ```
 
-### Required Folder structure and the files for nwb4fp
-## -base_data_folder Structure
+## Required Folder structure and the files for nwb4fp
+### -base_data_folder Structure
 The `-base_data_folder` is organized into two main subdirectories, each containing specific project-related files (recordings with phy output and videos with deeplabcut results). Here's the structure and description of the contained files:
 
 - `-base_data_folder`
@@ -67,7 +67,7 @@ The `-base_data_folder` is organized into two main subdirectories, each containi
 Please replace `project_name`, `video_name`, `dlc_model_name`, etc., with your specific project's details.
 
 
-### usage (example custom python file for running the nwb4fp)
+## usage (example custom python file for running the nwb4fp)
 ```bash
 
 from nwb4fp.main.main_create_nwb import run_qmnwb,test_qmnwb
