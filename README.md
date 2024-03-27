@@ -48,20 +48,23 @@ import pandas as pd
 def main():
     import os
     import sys
-    base_path = Path("Q:/Sachuriga/Sachuriga_Python")
-    base_data_folder = Path("S:/Sachuriga/")
+
+    base_data_folder = Path("base folder")
+    vedio_search_directory = base_data_folder/fr"Video_folder/project_name/"
+    path_save = base_data_folder/fr"nwb"
+    #temp folder to save temporally created waveform folder from spikeinterface
+    temp_folder = Path(r'C:/temp_waveform/')
+    save_path_test=(r"Your prefered saving path/4nwb_check.csv")
+    ## The function will copy the videos to the deeplabcut video folder, which were analyzed by older Deeplabcut models
+    idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
+
     sex = "F" # or "M"
     ## animals name for now only support 5 numbers str, for example here listed 6 animals
     animals = ["33331", "33332", "33333", "33334", "33335", "33336"]
     ## animals ages for first recording day
     age = "P45+"
     species = "Mus musculus"
-    vedio_search_directory = base_data_folder/fr"Ephys_Vedio/CR_CA1/"
-    path_save = base_data_folder/fr"nwb"
-    temp_folder = Path(r'C:/temp_waveform/')
-    save_path_test=(r"S:/Sachuriga/Ephys_Recording/4nwb_check.csv")
- 
-    idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
+
     test_qmnwb(animals,
                base_data_folder,
                temp_folder,
