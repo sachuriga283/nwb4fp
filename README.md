@@ -4,7 +4,7 @@ This repository houses a Python script, `main_create_nwb.py`, designed to conver
 
 ## Introduction
 
-The `test_qmnwb` function facilitates the checking the manual curated sorting files and DLC file is fullfilled the next step or not. The `run_qmnwb`  function facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.
+The `test_qmnwb` function facilitates the checking the manual curated sorting files and DLC file is fullfilled the next step or not. The `run_qmnwb`  function facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.  The `run_qmnwb` will read all the phy output ended with `phy_k` folder under each individual animals, and select the curated `good` units to calculate the qualyty metrix using python package `spikeinterface` built-in function and create a new phy output folder ended with `phy_k_manual` to preparing for the conversion to `.nwb` file.
 
 ## Features
 
@@ -68,6 +68,19 @@ def main():
                save_path_test,
                vedio_search_directory,
                idun_vedio_path=idun_vedio_path)
+
+    ## check the 4nwb_check.csv file whether all the files (phy output and dlc .h5 file) is there and whether the file is competble to process quality metrix or not
+
+    while True:
+    user_input = input("Press 'c' to continue or 'q' to quit: ").strip().lower()
+    if user_input == 'c':
+        print("Continuing...")
+        continue  # This will continue the loop
+    elif user_input == 'q':
+        print("Quitting...")
+        break  # This will break out of the loop
+    else:
+        print("Invalid input. Please press 'c' to continue or 'q' to quit.")
 
     run_qmnwb(animals,
               base_data_folder,
