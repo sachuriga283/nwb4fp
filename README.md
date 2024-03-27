@@ -1,6 +1,19 @@
-<h1><span style="font-size:0.5em;">Recalculating the quality matrix and downsampling the LFP signal</span><br/>
-<br/>
-<br/>
-<h1><span style="font-size:0.5em;">Install dependencies and main functions</span><br/>
-<br/>
-<span style="font-size:0.5em;">pip install nwb4fp</span><br/>
+This repository contains a script for processing neuroscience data into NWB (Neurodata Without Borders) format. The script is designed to handle data from Mus musculus species, specifically for age P45+ and sex F.
+
+## Introduction
+
+The script `main_create_nwb.py` in this repository is designed to facilitate the conversion of neuroscience data into the NWB format, which is a data standard for neurophysiology. This particular script is configured to work with data from a specific experimental setup involving Mus musculus.
+
+## Features
+
+- Converts experimental data into NWB format.
+- Handles data specifically from Mus musculus of age P45+ and sex F.
+- Searches for video files in specified directories.
+- Generates a CSV file for checking the processed data.
+
+## Installation
+
+Clone this repository to your local machine using:
+
+```bash
+git clone <repository-url>
