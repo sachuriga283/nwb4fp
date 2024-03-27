@@ -55,11 +55,11 @@ The `-base_data_folder` is organized into two main subdirectories, each containi
             - `sample_index.npy`: Description of this file.
             - `time_stemps.npy`: Description of this file.
           - `.events`
-            - `sample_index.npy`: Description of this file.
-            - `time_stemps.npy`: Description of this file.
-            - `states.npy`: Description of this file.
+            - `sample_index.npy`: index for each sampling point of TTL signal(which we used for aliging the time stemps).
+            - `time_stemps.npy`: time stemps of each TTL sampling point (Is camera base).
+            - `states.npy`: States signal of TTL signal, which is high low signal(-6 6 for 50Hz aquiring) refers to the start of the TTL and end of the TTL.
         - `phy_output`
-          - `spike_times.npy`: Description of this file.
+          - `spike_times.npy`: this is `int` number which refers to the sampling index to 
           - `recording.dat`: Description of this file.
           - `spike_clusters.npy`: Description of this file.
           - `cluster_info.tsv`: Description of this file.
