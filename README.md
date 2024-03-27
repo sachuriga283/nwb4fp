@@ -1,23 +1,37 @@
-This repository contains a script for processing neuroscience data into NWB (Neurodata Without Borders) format. The script is designed to handle data from electrophysiology data recorded with open ephys system and behavioral track analyzed with deeplabcut.
+# Neuroscience Data to NWB Conversion Script
+
+This repository houses a Python script, `main_create_nwb.py`, designed to convert neuroscience data into the Neurodata Without Borders (NWB) format. It is specifically tailored for processing electrophysiology data obtained from the open ephys system and behavioral tracking data analyzed with DeepLabCut.
 
 ## Introduction
 
-The script `main_create_nwb.py` in this repository is designed to facilitate the conversion of neuroscience data into the NWB format, which is a data standard for neurophysiology. This particular script is configured to work with data from a specific experimental setup involving Mus musculus.
+The `main_create_nwb.py` script facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.
 
 ## Features
 
-- Converts experimental data into NWB format.
-- Handles data specifically from Mus musculus of age P45+ and sex F.
-- Searches for video files in specified directories.
-- Generates a CSV file for checking the processed data.
+- **Data Conversion**: Efficiently converts electrophysiology and behavioral data into the NWB format.
+- **Species and Demographic Specificity**: Optimized for data from Mus musculus, particularly targeting individuals of age P45+ and sex F.
+- **Video File Handling**: Automatically searches and processes video files from specified directories, integrating them with the NWB dataset.
+- **Data Verification**: Generates a CSV file post-conversion, allowing users to verify the processed data's integrity and completeness.
 
 ## Installation
 
-Clone this repository to your local machine using:
+To use this script, you need to clone this repository and install the required Python package, `nwb4fp`.
+
+### Cloning the Repository
+
+Clone the repository to your local machine using the following command:
 
 ```bash
 git clone <repository-url>
+```
 
+### Install with pipy
 ```bash
 pip install nwb4fp
-
+```
+or create a condda env and install (recommended)
+```bash
+conda create -n nwb4fp -y python
+conda activate nwb4fp
+pip install nwb4fp
+```
