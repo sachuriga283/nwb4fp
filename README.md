@@ -4,7 +4,7 @@ This repository houses a Python script, `main_create_nwb.py`, designed to conver
 
 ## Introduction
 
-The `main_create_nwb.py` script facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.
+The `test_qmnwb` function facilitates the checking the manual curated sorting files and DLC file is fullfilled the next step or not. The `run_qmnwb`  function facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.
 
 ## Features
 
