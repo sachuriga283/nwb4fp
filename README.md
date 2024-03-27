@@ -4,7 +4,7 @@ This repository houses a Python script, `main_create_nwb.py`, designed to conver
 
 ## Introduction
 
-The `test_qmnwb` function facilitates the checking the manual curated sorting files and DLC file is fullfilled the next step or not. The `run_qmnwb`  function facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.  The `run_qmnwb` will read all the phy output ended with `phy_k` folder under each individual animals, and select the curated `good` units to calculate the qualyty metrix using python package `spikeinterface` built-in function and create a new phy output folder ended with `phy_k_manual` to preparing for the conversion to `.nwb` file.
+The `test_qmnwb` function facilitates the checking the manual curated sorting files and DLC file is fullfilled the next step or not. The `test_qmnwb` function will create a `4nwb_check.csv` to let you check whether or not the files are meeting the requirement. The `run_qmnwb`  function facilitates the conversion of neuroscience data into NWB format, a standardized format for neurophysiology data sharing and storage. This script is particularly useful for researchers working with data from Mus musculus, focusing on electrophysiology and behavioral data.  The `run_qmnwb` will read all the phy output ended with `phy_k` folder under each individual animals, and select the curated `good` units to calculate the qualyty metrix using python package `spikeinterface` built-in function and create a new phy output folder ended with `phy_k_manual` to preparing for the conversion to `.nwb` file.
 
 ## Features
 
