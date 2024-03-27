@@ -38,6 +38,7 @@ def main():
     run_qmnwb(animals,base_data_folder,sex,age,species,vedio_search_directory,path_save,temp_folder)
 
 def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test,vedio_search_directory,idun_vedio_path):
+    import pandas as pd
     for indvi in animals:
         ID = indvi
         counter = 0
@@ -45,6 +46,9 @@ def test_qmnwb(animals,base_data_folder,temp_folder,save_path_test,vedio_search_
         folder_path = fr"{str(base_data_folder)}/Ephys_Recording/CR_CA1/{ID}/"
         ##for quality metrix
         sorted_files = load_data(folder_path, file_suffix='_phy_k')
+        df = pd.DataFrame(columns=['File', 'competability','dlc_model', 'video_name','video_file'])
+        df.to_csv(save_path_test, index=False)
+
         for file in sorted_files:
             test_clusterInfo(file,
                              temp_folder,
