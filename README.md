@@ -22,7 +22,7 @@ To use this script, you need to clone this repository and install the required P
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/sachuriga283/QuattrocoloLab2nwb-nwb4fp.git>
 ```
 
 ### Install with pipy
