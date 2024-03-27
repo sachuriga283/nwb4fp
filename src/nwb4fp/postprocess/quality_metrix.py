@@ -77,34 +77,64 @@ def test_clusterInfo(path, temp_folder,save_path_test,vedio_search_directory,idu
         try:
             arr_with_new_col,model_num, dlc_path = test_positions_h5(path,vedio_search_directory,raw_path,UD)
 
-            if model_num == 80000:
-                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "80000_iteraion"})
+            if model_num == 800000:
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "800000_iteraion"})
+                new_row['video_name']= [fr"{vname}.avi"]
+                new_row['video_file']= ['file should be there']
             else:  
-                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "60000_iteraion"})
+                new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "600000_iteraion"})
                 temp_vname = dlc_path.name.split("DLC_dlcrnet")
                 vname=temp_vname[0]
                 path_ori = dlc_path.parent
                 idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
-                shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
+                try:
+                    shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
+                    new_row['video_name']= [fr"{vname}.avi"]
+                    new_row['video_file']= ['file transefered']
+                except FileNotFoundError:
+                    new_row['video_name']= [fr"{vname}.avi"]
+                    new_row['video_file']= ['file not exist']
         except IndexError:
             new_row = pd.DataFrame({'File': [raw_path], 'competability': "can be merged",'dlc': "file not found"})
+            try:
+                shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
+                new_row['video_name']= [fr"{vname}.avi"]
+                new_row['video_file']= ['file transefered']
+            except FileNotFoundError:
+                new_row['video_name']= [fr"{vname}.avi"]
+                new_row['video_file']= ['file not exist']
 
         print(f"{raw_path} merge complete")
     except AssertionError:
             try:
                 arr_with_new_col,model_num = test_positions_h5(path,vedio_search_directory,raw_path,UD)
-                if model_num == 80000:
-                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "80000_iteraion"})
+                if model_num == 800000:
+                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "800000_iteraion"})
+                    new_row['video_name']= [fr"{vname}.avi"]
+                    new_row['video_file']= ['file should be there']
                 else:  
-                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "60000_iteraion"})
+                    new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "600000_iteraion"})
                     temp_vname = dlc_path.name.split("DLC_dlcrnet")
                     vname=temp_vname[0]
                     path_ori = dlc_path.parent
                     idun_vedio_path=r"P:/Overlap_project/data/CR_implant_add_new"
-                    shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
-                    
+                    try:
+                        shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
+                        new_row['video_name']= [fr"{vname}.avi"]
+                        new_row['video_file']= ['file transefered']
+                    except FileNotFoundError:
+                        new_row['video_name']= [fr"{vname}.avi"]
+                        new_row['video_file']= ['file not exist']
+                        
             except IndexError:
                 new_row = pd.DataFrame({'File': [raw_path], 'competability': "can not be merged",'dlc': "file not found"})
+                try:
+                    shutil.copy2(Path(fr'{path_ori}/{vname}.avi'), Path(fr'{idun_vedio_path}/{vname}.avi'))
+                    new_row['video_name']= [fr"{vname}.avi"]
+                    new_row['video_file']= ['file transefered']
+                except FileNotFoundError:
+                    new_row['video_name']= [fr"{vname}.avi"]
+                    new_row['video_file']= ['file not exist']
             print(f"{raw_path} no merge")
 
 
