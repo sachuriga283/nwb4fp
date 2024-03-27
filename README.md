@@ -38,6 +38,35 @@ conda activate nwb4fp
 pip install nwb4fp
 ```
 
+## -base_data_folder Structure
+
+The `-base_data_folder` is organized into two main subdirectories, each containing specific project-related files (recordings with phy output and videos with deeplabcut results). Here's the structure and description of the contained files:
+
+- `-base_data_folder`
+  - `Ephys_Video`
+    - `project_name`
+      - `fr"{video_name}{dlc_model_name}"_filtered.h5`: Description of this file.
+      - `fr"{video_name}".avi`: Description of this file.
+  - `Ephys_recording`
+    - `project_name`
+      - `individuals`
+        - `recording/recording nodes`
+          - `.continues`
+            - `sample_index.npy`: Description of this file.
+            - `time_stemps.npy`: Description of this file.
+          - `.events`
+            - `sample_index.npy`: Description of this file.
+            - `time_stemps.npy`: Description of this file.
+            - `states.npy`: Description of this file.
+        - `phy_output`
+          - `spike_times.npy`: Description of this file.
+          - `recording.dat`: Description of this file.
+          - `spike_clusters.npy`: Description of this file.
+          - `cluster_info.tsv`: Description of this file.
+
+Please replace `project_name`, `video_name`, `dlc_model_name`, etc., with your specific project's details.
+
+
 ### usage (example custom python file for running the nwb4fp)
 ```bash
 
