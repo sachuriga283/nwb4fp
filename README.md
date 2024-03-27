@@ -135,3 +135,12 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+# Support
+### For any questions or issues, please open an issue on this repository, or contact the maintainers directly via GitHub Issues.
+
+# Contributing
+### Contributions are welcome! Please fork the repository and submit a pull request with your proposed changes. For more information, see the contributing guide.
+
+# License
+### This project is licensed under the MIT License - see the LICENSE file for details.
